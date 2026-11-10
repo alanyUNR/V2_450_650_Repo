@@ -3,4 +3,4 @@
 def greet(name):
     print('Hello', name,'!')
 # test code, modify below func call with name of your choice
-# greet('name')
+greet('Paris')
