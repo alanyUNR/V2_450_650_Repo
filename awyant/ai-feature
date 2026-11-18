@@ -1,0 +1,124 @@
+#ai-feature craps game for assignment 9
+import random
+
+def roll_dice():
+    die1 = random.randint(1, 6)
+    die2 = random.randint(1, 6)
+    total = die1 + die2
+
+    print(f"\nYou rolled {die1} and {die2}. Total: {total}")
+    return total
+
+
+def play_craps():
+    print("\n--- New Game ---")
+
+    # Get player's bet
+    while True:
+        try:
+            bet = int(input("Enter your bet: $"))
+
+            if bet <= 0:
+                print("Your bet must be greater than zero.")
+            elif bet > balance:
+                print("You cannot bet more than your balance.")
+            else:
+                break
+
+        except ValueError:
+            print("Please enter a valid whole dollar amount.")
+
+    print("\nRolling the dice!")
+
+    first_roll = roll_dice()
+
+    # Check the first roll
+    if first_roll == 7 or first_roll == 11:
+        print("You win!")
+        return True, bet
+
+    elif first_roll == 2 or first_roll == 3 or first_roll == 12:
+        print("You lose!")
+        return False, bet
+
+    else:
+        point = first_roll
+        print(f"Your point is {point}.")
+
+        # Continue rolling
+        while True:
+            next_roll = roll_dice()
+
+            if next_roll == point:
+                print("You rolled your point! You win!")
+                return True, bet
+
+            elif next_roll == 7:
+                print("You rolled a 7. You lose!")
+                return False, bet
+
+            else:
+                print("Keep rolling!")
+
+
+# Main game program
+balance = 100
+wins = 0
+losses = 0
+games_played = 0
+
+print("================================")
+print("       WELCOME TO CRAPS!")
+print("================================")
+print("Starting balance: $100")
+
+while balance > 0:
+
+    print(f"\nCurrent balance: ${balance}")
+
+    won, bet = play_craps()
+
+    games_played += 1
+
+    if won:
+        wins += 1
+        balance += bet
+        print(f"You won ${bet}!")
+    else:
+        losses += 1
+        balance -= bet
+        print(f"You lost ${bet}.")
+
+    print(f"New balance: ${balance}")
+
+    if balance == 0:
+        print("\nYou are out of money!")
+        break
+
+    # Ask to play again
+    while True:
+        play_again = input("\nWould you like to play again? (yes/no): ").lower()
+
+        if play_again == "yes" or play_again == "no":
+            break
+
+        print("Please enter yes or no.")
+
+    if play_again == "no":
+        break
+
+
+# Display final statistics
+print("\n================================")
+print("          GAME SUMMARY")
+print("================================")
+print(f"Games played: {games_played}")
+print(f"Games won: {wins}")
+print(f"Games lost: {losses}")
+print(f"Final balance: ${balance}")
+
+if games_played > 0:
+    win_percentage = (wins / games_played) * 100
+    print(f"Win percentage: {win_percentage:.1f}%")
+
+print("\nThanks for playing Craps!")
