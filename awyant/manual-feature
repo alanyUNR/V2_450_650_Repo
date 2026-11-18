@@ -1,0 +1,54 @@
+
+import random
+
+def roll_dice():
+    die1 = random.randint(1, 6)
+    die2 = random.randint(1, 6)
+    total = die1 + die2
+
+    print(f"You rolled a {die1} and a {die2}. Total: {total}")
+    return total
+
+
+def play_craps():
+    print("\nWelcome to the best Game of Craps!")
+    print("Let's get to rolling the dice!\n")
+
+    first_roll = roll_dice()
+
+    # Check the first roll
+    if first_roll == 7 or first_roll == 11:
+        print("You win! Congratulations!")
+
+    elif first_roll == 2 or first_roll == 3 or first_roll == 12:
+        print("Sorry, you lose!")
+
+    else:
+        point = first_roll
+        print(f"Your point is {point}. Keep rolling!")
+
+        # Continue rolling until the player wins or loses
+        while True:
+            next_roll = roll_dice()
+
+            if next_roll == point:
+                print("You rolled your point! You win!")
+                break
+
+            elif next_roll == 7:
+                print("You rolled a 7. Sorry, you lose!")
+                break
+
+            else:
+                print("No win or loss yet. Roll again!")
+
+
+# Allow the player to play again
+while True:
+    play_craps()
+
+    play_again = input("\nWould you like to play again? (yes/no): ").lower()
+
+    if play_again != "yes":
+        print("Thanks for playing Craps. Goodbye!")
+        break
