@@ -21,12 +21,12 @@ def play_craps():
             if bet <= 0:
                 print("Your bet must be greater than zero.")
             elif bet > balance:
-                print("You cannot bet more than your balance.")
+                print("You can't bet more than your balance.")
             else:
                 break
 
         except ValueError:
-            print("Please enter a valid whole dollar amount.")
+            print("Please work to enter a valid whole dollar amount.")
 
     print("\nRolling the dice!")
 

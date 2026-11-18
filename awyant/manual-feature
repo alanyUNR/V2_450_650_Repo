@@ -11,8 +11,8 @@ def roll_dice():
 
 
 def play_craps():
-    print("\nWelcome to the Game of Craps!")
-    print("Let's roll the dice!\n")
+    print("\nWelcome to the best Game of Craps!")
+    print("Let's get to rolling the dice!\n")
 
     first_roll = roll_dice()
 
